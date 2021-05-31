@@ -35,6 +35,8 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -126,19 +128,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./panel.php?modulo=usuarios" class="nav-link <?php echo ($modulo == "usuarios")? "active" : "";   ?>  ">
+                <a href="./panel.php?modulo=users" class="nav-link <?php echo ($modulo == "users")? "active" : "";   ?>  ">
                   <i class="fas fa-users nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./panel.php?modulo=productos" class="nav-link <?php  echo ($modulo == "productos") ? "active" : ""; ?> ">
+                <a href="./panel.php?modulo=products" class="nav-link <?php  echo ($modulo == "products") ? "active" : ""; ?> ">
                   <i class="fas fa-box-open nav-icon"></i>
                   <p>Productos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./panel.php?modulo=ventas" class="nav-link <?php echo ($modulo == "ventas")? "active" : "";  ?>  ">
+                <a href="./panel.php?modulo=sells" class="nav-link <?php echo ($modulo == "sells")? "active" : "";  ?>  ">
                   <i class="fas fa-store nav-icon"></i>
                   <p>Ventas</p>
                 </a>
@@ -158,16 +160,16 @@
   include_once "statistics.php";
   }
 
-  if($modulo == "usuarios"){
-    include_once "usuarios.php";
+  if($modulo == "users"){
+    include_once "users.php";
   }
 
-  if($modulo == "productos"){
-    include_once "productos.php";
+  if($modulo == "products"){
+    include_once "products.php";
   }
 
-  if($modulo == "ventas"){
-    include_once "ventas.php";
+  if($modulo == "sells"){
+    include_once "sells.php";
   }
  ?>
 
@@ -222,5 +224,20 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script>
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 </body>
 </html>
