@@ -252,5 +252,21 @@
     });
   });
 </script>
+<script>
+$(document).ready(function(){
+
+  $(".delete").click(function(e){
+    e.preventDefault();
+    let message = confirm("Estas seguro de eliminar este usuario?");
+    if(message){
+      let link = $(this).attr("href");
+      window.location= link;
+    }
+  })
+
+
+});
+
+ </script>
 </body>
 </html>

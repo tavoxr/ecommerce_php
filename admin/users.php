@@ -1,3 +1,36 @@
+<?php
+ include_once "./db_ecommerce.php";
+ $conexion  = mysqli_connect($host, $user,$pass, $db,$port);
+
+ if(isset($_REQUEST['idDelete'])){
+
+  $idUser= mysqli_real_escape_string($conexion, $_REQUEST['idDelete']??'');
+  $query = "DELETE FROM Usuarios WHERE id = '".$idUser."';";
+  $res = mysqli_query($conexion,$query);
+
+  if($res){
+   
+    ?>
+  <div class="alert alert-warning float-right" role="alert">
+    Usuario eliminado con exito. 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+<?php
+
+  }else{
+    ?>
+    <div class="alert alert-danger float-right" role="alert">
+      Error al eliminar <?php echo mysqli_error($conexion); ?>
+    </div>
+    <?php
+  }
+ }
+
+?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,8 +67,7 @@
                 <tbody>
 
                 <?php
-                  include_once "./db_ecommerce.php";
-                  $conexion  = mysqli_connect($host, $user,$pass, $db,$port);
+                 
                   $query = "SELECT * FROM Usuarios;";
                   $res = mysqli_query($conexion,$query);
                               
@@ -49,7 +81,7 @@
                     <a class="btn btn-primary" href="panel.php?modulo=editUser&id=<?php echo $row['id'];  ?>" >
                       <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger" href="users.php?idDelete=<?php echo $row['id'] ?>">
+                    <a class="btn btn-danger delete" href="panel.php?modulo=users&idDelete=<?php echo $row['id'] ?>">
                       <i class="fas fa-trash"></i>
                     </a>
                   </td>
