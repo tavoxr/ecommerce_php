@@ -1,5 +1,12 @@
 <?php
     session_start();
+    session_regenerate_id(true);
+    if(isset($_REQUEST['session']) && $_REQUEST['session']=="close"){
+      session_destroy();
+      header("location: index.php");
+
+
+    }
     if( isset($_SESSION['id'])==false){
       header("location: index.php");
     }
@@ -64,13 +71,13 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="panel.php?modulo=editUser&id=<?php echo $_SESSION['id']; ?>" class="dropdown-item">
             <!-- Message Start -->
-            <h6>Edit Profile</h6>
+            <h6>Editar Perfil</h6>
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="panel.php?modulo=&session=close" class="dropdown-item">
             <!-- Message Start -->
-            <h6>Log Out</h6>
+            <h6 class="text-danger">Cerrar Sesión</h6>
             <!-- Message End -->
           </a>
         
