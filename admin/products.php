@@ -3,8 +3,34 @@
  $conexion  = mysqli_connect($host, $user,$pass, $db,$port);
 
  
+ if(isset($_REQUEST['idDelete'])){
 
-?>
+    $idProduct= mysqli_real_escape_string($conexion, $_REQUEST['idDelete']??'');
+    $query = "DELETE FROM Productos WHERE id = '".$idProduct."';";
+    $res = mysqli_query($conexion,$query);
+  
+    if($res){
+     
+      ?>
+    <div class="alert alert-warning float-right" role="alert">
+      Producto eliminado con exito. 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+      </button>
+  </div>
+  <?php
+  
+    }else{
+      ?>
+      <div class="alert alert-danger float-right" role="alert">
+        Error al eliminar <?php echo mysqli_error($conexion); ?>
+      </div>
+      <?php
+    }
+   }
+  
+  ?>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -15,7 +41,7 @@
             <h1>Productos</h1>
           </div>
           <div class=" col-lg-2 col-sm-12 text-right">
-          <a class="btn btn-success w-100 text-white" href="panel.php?modulo=createUser" >New User</a>
+          <a class="btn btn-success w-100 text-white" href="panel.php?modulo=createProduct" >Agregar Producto</a>
           </div>
         
         </div>
@@ -36,7 +62,7 @@
                   <th>Producto</th>
                   <th>Precio</th>
                   <th>Existencia</th>
-                  
+                  <th>Actions  </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,14 +79,14 @@
                   <td><?php echo $row['nombre'];   ?></td>
                   <td><?php echo $row['precio'];  ?></td>
                   <td><?php echo $row['stock'];  ?></td>
-                 <!-- <td>
-                    <a class="btn btn-primary" href="panel.php?modulo=editUser&id=<?php echo $row['id'];  ?>" >
+                  <td>
+                    <a class="btn btn-primary" href="panel.php?modulo=editProduct&id=<?php echo $row['id'];  ?>" >
                       <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger delete" href="panel.php?modulo=users&idDelete=<?php echo $row['id'] ?>">
+                    <a class="btn btn-danger deleteProduct" href="panel.php?modulo=products&idDelete=<?php echo $row['id']; ?>">
                       <i class="fas fa-trash"></i>
                     </a>
-                  </td> -->
+                  </td> 
                 </tr> 
                     <?php
                   }

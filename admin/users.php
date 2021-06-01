@@ -81,7 +81,7 @@
                     <a class="btn btn-primary" href="panel.php?modulo=editUser&id=<?php echo $row['id'];  ?>" >
                       <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger delete" href="panel.php?modulo=users&idDelete=<?php echo $row['id'] ?>">
+                    <a class="btn btn-danger deleteUser" href="panel.php?modulo=users&idDelete=<?php echo $row['id'] ?>">
                       <i class="fas fa-trash"></i>
                     </a>
                   </td>

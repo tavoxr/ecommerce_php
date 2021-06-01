@@ -43,7 +43,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css"> 
+  <!-- DataTables editables-->
+ 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -191,6 +193,14 @@
   if($modulo == "editUser"){
     include_once "editUser.php";
   }
+
+  if($modulo == "createProduct"){
+    include_once "createProduct.php";
+  }
+
+  if($modulo == "editProduct"){
+    include_once "editProduct.php";
+  }
  ?>
 
   <!-- /.content-wrapper -->
@@ -245,8 +255,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- DataTables -->
+
 <script src="plugins/datatables/jquery.dataTables.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- DataTables editables-->
+
+
+
+
 <script>
   $(function () {
     $('#example2').DataTable({
@@ -259,21 +275,6 @@
     });
   });
 </script>
-<script>
-$(document).ready(function(){
-
-  $(".delete").click(function(e){
-    e.preventDefault();
-    let message = confirm("Estas seguro de eliminar este usuario?");
-    if(message){
-      let link = $(this).attr("href");
-      window.location= link;
-    }
-  })
-
-
-});
-
- </script>
+<script src="./js/index.js" ></script>
 </body>
 </html>
