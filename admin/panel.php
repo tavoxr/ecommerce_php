@@ -62,15 +62,9 @@
          
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="editarPerfil.php" class="dropdown-item">
+          <a href="panel.php?modulo=editUser&id=<?php echo $_SESSION['id']; ?>" class="dropdown-item">
             <!-- Message Start -->
-            <h6>Profile</h6>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <h6>Edit</h6>
+            <h6>Edit Profile</h6>
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
@@ -128,7 +122,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./panel.php?modulo=users" class="nav-link <?php echo ($modulo == "users")? "active" : "";   ?>  ">
+                <a href="./panel.php?modulo=users" class="nav-link <?php echo ($modulo == "users" || $modulo == "createUser" || $modulo == "editUser" )? "active" : "";   ?>  ">
                   <i class="fas fa-users nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
@@ -156,6 +150,17 @@
 
   <!-- Content Wrapper. Contains page content -->
  <?php
+ if(isset($_REQUEST['mensaje'])){
+   ?>
+  <div class="alert alert-primary alert-dismissible fade show float-right" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+  <?php echo $_REQUEST['mensaje']?>
+  </div>
+<?php
+ }
  if($modulo == "statistics" || $modulo == ""){
   include_once "statistics.php";
   }
@@ -170,6 +175,14 @@
 
   if($modulo == "sells"){
     include_once "sells.php";
+  }
+
+  if($modulo == "createUser"){
+    include_once "createUser.php";
+  }
+
+  if($modulo == "editUser"){
+    include_once "editUser.php";
   }
  ?>
 

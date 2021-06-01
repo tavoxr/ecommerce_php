@@ -7,7 +7,7 @@
             <h1>Usuarios</h1>
           </div>
           <div class=" col-lg-2 col-sm-12 text-right">
-          <a class="btn btn-success w-100 text-white" href="createUser.php" >New User</a>
+          <a class="btn btn-success w-100 text-white" href="panel.php?modulo=createUser" >New User</a>
           </div>
         
         </div>
@@ -46,7 +46,7 @@
                   <td><?php echo $row['userName'];   ?></td>
                   <td><?php echo $row['email'];  ?></td>
                   <td>
-                    <a class="btn btn-primary" href="editUser.php?id=<?php echo $row['id'];  ?>" >
+                    <a class="btn btn-primary" href="panel.php?modulo=editUser&id=<?php echo $row['id'];  ?>" >
                       <i class="fas fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="users.php?idDelete=<?php echo $row['id'] ?>">

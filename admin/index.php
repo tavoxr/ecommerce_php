@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+ 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -43,6 +44,7 @@
           $res =  mysqli_query($con, $query);
           $row =  mysqli_fetch_assoc($res);
           if($row){
+            print_r($_REQUEST);
             $_SESSION['id']=$row['id'];
             $_SESSION['email']=$row['email'];
             $_SESSION['nombre']=$row['nombre'];
