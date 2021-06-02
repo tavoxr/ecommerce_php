@@ -143,6 +143,9 @@
     <?php 
         include_once "admin/db_ecommerce.php";
         $conexion = mysqli_connect($host, $user,$pass,$db,$port);
+        
+
+
         $query = "SELECT 
         p.id,
         p.nombre,
@@ -153,7 +156,7 @@
         Productos AS p
         INNER JOIN productos_files AS pf ON pf.producto_id = p.id
         INNER JOIN files AS f ON f.id = pf.file_id
-        GROUP BY p.id;
+      
         ";
 
         $res = mysqli_query($conexion, $query);
@@ -177,6 +180,20 @@
     ?>
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
    
