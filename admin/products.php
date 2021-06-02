@@ -40,9 +40,7 @@
           <div class="col-lg-10  col-sm-12">
             <h1>Productos</h1>
           </div>
-          <div class=" col-lg-2 col-sm-12 text-right">
-          <a class="btn btn-success w-100 text-white" href="panel.php?modulo=createProduct" >Agregar Producto</a>
-          </div>
+         
         
         </div>
       </div><!-- /.container-fluid -->
@@ -55,45 +53,17 @@
           <div class="card">
            
             <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+            <div class="card-body col-12">
+              <table id="tablaProductos" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Producto</th>
                   <th>Precio</th>
                   <th>Existencia</th>
-                  <th>Actions  </th>
+                  <th>Imagen(es)</th>
                 </tr>
                 </thead>
-                <tbody>
-
-                <?php
-                 
-                  $query = "SELECT * FROM Productos;";
-                  $res = mysqli_query($conexion,$query);
-                              
-                  while($row = mysqli_fetch_assoc($res)){
-?>
-
-                <tr>
-                  <td><?php echo $row['nombre'];   ?></td>
-                  <td><?php echo $row['precio'];  ?></td>
-                  <td><?php echo $row['stock'];  ?></td>
-                  <td>
-                    <a class="btn btn-primary" href="panel.php?modulo=editProduct&id=<?php echo $row['id'];  ?>" >
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="btn btn-danger deleteProduct" href="panel.php?modulo=products&idDelete=<?php echo $row['id']; ?>">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                  </td> 
-                </tr> 
-                    <?php
-                  }
-                ?>
-                
-              
-                </tbody>
+               
                
               </table>
             </div>

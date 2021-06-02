@@ -43,9 +43,13 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css"> 
+  <!-- <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css"> -->
   <!-- DataTables editables-->
- 
+  <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/datetime/1.0.3/css/dataTables.dateTime.min.css" rel="stylesheet" />
+  <link href="css/editor.dataTables.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -193,14 +197,6 @@
   if($modulo == "editUser"){
     include_once "editUser.php";
   }
-
-  if($modulo == "createProduct"){
-    include_once "createProduct.php";
-  }
-
-  if($modulo == "editProduct"){
-    include_once "editProduct.php";
-  }
  ?>
 
   <!-- /.content-wrapper -->
@@ -255,11 +251,16 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- DataTables -->
-
-<script src="plugins/datatables/jquery.dataTables.js"></script>
+<!-- <script src="plugins/datatables/jquery.dataTables.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+-->
 <!-- DataTables editables-->
 
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.0.3/js/dataTables.dateTime.min.js"></script>
+<script src="./js/dataTables.editor.min.js"></script>
 
 
 
@@ -275,6 +276,94 @@
     });
   });
 </script>
-<script src="./js/index.js" ></script>
+<script >
+$(document).ready(function(){
+
+//Delete User
+$(".deleteUser").click(function(e){
+  e.preventDefault();
+  let message = confirm("Estas seguro de eliminar este usuario?");
+  if(message){
+    let link = $(this).attr("href");
+    window.location= link;
+  }
+})
+
+
+$(".deleteProduct").click(function(e){
+    e.preventDefault();
+    let message = confirm("Estas seguro de eliminar este producto?");
+    if(message){
+      let link = $(this).attr("href");
+      window.location= link;
+    }
+  })
+
+
+
+//DataTables
+editor = new $.fn.dataTable.Editor( {
+    ajax: "controllers/productos.php", 
+    table: "#tablaProductos",
+    fields: [ {
+            label: "Nombre",
+            name: "nombre"
+        }, {
+            label: "Precio",
+            name: "precio"
+        }, {
+            label: "Existencia",
+            name: "stock"
+        },{
+                label: "Imagenes:",
+                name: "files[].id",
+                type: "uploadMany",
+                display: function ( fileId, counter ) {
+                    return '<img src="'+editor.file( 'files', fileId ).web_path+'"/>';
+                },
+                noFileText: 'No hay imagenes'
+            }
+    ]
+} );
+
+$('#tablaProductos').DataTable( {
+    dom: "Bfrtip",
+    ajax: "controllers/productos.php",
+    columns: [
+        { data: "nombre" },
+        { data: "precio", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) },
+        { data: "stock" },
+        {
+                data: "files",
+                render: function ( d ) {
+                    return d.length ?
+                        d.length+' imagen(s)' :
+                        'No hay imagenes';
+                },
+                title: "Imagen"
+            }
+    ],
+    select: true,
+    buttons: [
+        { extend: "create", editor: editor },
+        { extend: "edit",   editor: editor },
+        { extend: "remove", editor: editor }
+    ]
+} );
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+</script>
 </body>
 </html>
