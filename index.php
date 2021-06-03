@@ -22,6 +22,11 @@
 
 </head>
 <body>
+
+<?php
+ include_once "admin/db_ecommerce.php";
+ $conexion = mysqli_connect($host, $user,$pass,$db,$port);
+?>
    
   
 <!-- Navbar -->
@@ -31,30 +36,17 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index.php" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+     
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
+   
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-shopping-cart"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <span class="badge badge-danger navbar-badge"  id="badgeProducto"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -138,67 +130,17 @@
     </ul>
   </nav>
   <!-- /.navbar -->
-  <div class="container">
-  <div class="row">
-    <?php 
-        include_once "admin/db_ecommerce.php";
-        $conexion = mysqli_connect($host, $user,$pass,$db,$port);
-        
+<?php  
+   $modulo = $_REQUEST['modulo']??'';
+   if($modulo == "productos" || $modulo == ""){
+     include_once "productos.php";
+   }
 
+   if($modulo == 'detalleProducto'){
+     include_once "detalleProducto.php";
+   }
 
-        $query = "SELECT 
-        p.id,
-        p.nombre,
-        p.precio,
-        p.stock,
-        f.web_path
-        FROM 
-        Productos AS p
-        INNER JOIN productos_files AS pf ON pf.producto_id = p.id
-        INNER JOIN files AS f ON f.id = pf.file_id
-      
-        ";
-
-        $res = mysqli_query($conexion, $query);
-        while($row = mysqli_fetch_assoc($res)){
 ?>
-    <div class="col-lg-4 col-md-6 col-sm-12" >
-            <div class="card border-primary">
-                <img class="card-img-top img-thumbnail" src="<?php echo $row['web_path'] ?> " alt="" />
-                <div class="card-body text-center">
-                <h4 class="card-text"><strong><?php echo $row['nombre'];?></strong></h4>
-                <p class="card-text"><strong>Precio: </strong><?php echo $row['precio']; ?></p>
-                <p class="card-text"><strong>Existencia: </strong><?php echo $row['stock']; ?></p>
-                <a class="btn btn-primary ">Ver</a>
-                </div>
-            </div>
-    </div>
-
-<?php
-
-        }
-    ?>
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-   
-
-    
 
 <!-- jQuery -->
 <script src="admin/plugins/jquery/jquery.min.js"></script>
@@ -215,6 +157,7 @@
 <script src="admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="admin/dist/js/demo.js"></script>
+<script src="admin/js/ecommerce.js" ></script>
 
 
 
