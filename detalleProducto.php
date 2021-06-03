@@ -56,10 +56,16 @@
              
 
               <div class="mt-4">
-                <div class="btn btn-primary btn-lg btn-flat w-50">
+                <button class="btn btn-primary btn-lg btn-flat w-50" id="agregarCarrito" 
+                        data-id="<?php echo $_REQUEST['id'];  ?>"
+                        data-nombre="<?php echo $rowProducto['nombre']; ?>"
+                        data-web_path="<?php echo $rowImagen['web_path']; ?>"
+                        
+                        
+                        >
                   <i class="fas fa-cart-plus fa-lg mr-2"></i> 
                   Add to Cart
-                </div>
+                </button>
                 </br>    
                 <a class="btn btn-danger btn-lg btn-flat mt-4 w-50" href="index.php?modulo=productos">
                   <i class="fas fa-arrow-left fa-lg mr-2"></i> 
@@ -67,6 +73,11 @@
                 </a>
 
                
+              </div>
+
+              <div class="mt-4">
+              Cantidad
+                <input  type="number"  name="" id="cantidadProductos" class="form-control" value="1"/>
               </div>
 
               <div class="mt-4 product-share">
