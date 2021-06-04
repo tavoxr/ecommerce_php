@@ -77,7 +77,7 @@
 
               <div class="mt-4">
               Cantidad
-                <input  type="number"  name="" id="cantidadProductos" class="form-control" value="1"/>
+                <input  type="number"  name="" id="cantidadProducto" class="form-control" value="1"/>
               </div>
 
               <div class="mt-4 product-share">

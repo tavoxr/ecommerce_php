@@ -1,5 +1,5 @@
 <?php
-    $productos = unserialize($_COOKIE['PRODUCTOS']??'');
+    $productos = unserialize($_COOKIE['productos']??'');
     if(is_array($productos) ==false)$productos=array();
     $siYaEstaProducto = false;
     foreach($productos as $key => $value){
