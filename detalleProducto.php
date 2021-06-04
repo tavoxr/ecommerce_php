@@ -27,6 +27,7 @@
 
                 $resImagen = mysqli_query($conexion, $queryImagenes);
                 $rowImagen = mysqli_fetch_assoc($resImagen);
+                
 
                 ?>
             <div class="col-12">
@@ -60,7 +61,7 @@
                         data-id="<?php echo $_REQUEST['id'];  ?>"
                         data-nombre="<?php echo $rowProducto['nombre']; ?>"
                         data-web_path="<?php echo $rowImagen['web_path']; ?>"
-                        
+                        data-precio="<?php echo $rowProducto['precio']; ?>"
                         
                         >
                   <i class="fas fa-cart-plus fa-lg mr-2"></i> 

@@ -73,6 +73,10 @@
      include_once "detalleProducto.php";
    }
 
+   if($modulo == "carrito"){
+    include_once "carrito.php";
+  }
+
 ?>
 
 <!-- jQuery -->
